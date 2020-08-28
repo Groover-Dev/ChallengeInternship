@@ -14,10 +14,12 @@ Your job is to add two new features:
 - run:
 ```
 FLASK_ENV=development \
-  CLIENT_ID=<the client id we gave you> \
-  CLIENT_SECRET=<the client secret we gave you> \
+  CLIENT_ID=e18d6952d6854b6c9ab1a161a013e6e3 \
+  CLIENT_SECRET=7555b89676e34ac69a1c32c49b3dfef6 \
   flask run
 ```
+
+
 - go to http://localhost:5000/
 - You can now log to spotify through the app.
 
@@ -39,3 +41,10 @@ Feel free to move and re-organise as you please, we expect a well organised and 
 - As stated above, to test your server we will GET `/api/artists/` and we expect a nicely organized payload of artists.
 - All stability, performance, efficiency adds-up are highly recommended.
 - not mandatory but if you want to make a UI, go ahead and complete folder ui/. 
+
+# modification explication
+
+- adding storage using tinydb
+- adding a 404 error handler
+- adding a api/artist route 
+- adding a api/artist/<artist_name> route
