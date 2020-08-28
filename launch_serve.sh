@@ -1,0 +1,4 @@
+FLASK_ENV=development \
+  CLIENT_ID=e18d6952d6854b6c9ab1a161a013e6e3 \
+  CLIENT_SECRET=7555b89676e34ac69a1c32c49b3dfef6 \
+  flask run
