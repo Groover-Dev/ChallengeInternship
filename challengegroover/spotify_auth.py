@@ -48,15 +48,10 @@ class SpotifyAuth(object):
 
     def refreshAuth(self, refresh_token):
         body = {"grant_type": "refresh_token", "refresh_token": refresh_token}
-        print("BEFORE REQUEST")
-        print(body['refresh_token'])
-        print(self.HEADER)
         post_refresh = requests.post(
             self.SPOTIFY_URL_TOKEN, data=body, headers=self.HEADER
         )
-        print("AFTER REQUEST")
         p_back = json.dumps(post_refresh.text)
-        print("token refreshed")
         return self.handleToken(p_back)
 
     def getUser(self):

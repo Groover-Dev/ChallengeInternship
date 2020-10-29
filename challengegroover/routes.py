@@ -61,10 +61,3 @@ def get_artist(artist_name):
     if artist == None:
         abort(make_response(jsonify(message="Artist not found in local copy"), 404))
     return json.dumps(artist,cls=AlchemyJsonEncoder)
-
-
-@api.route("/test-refresh")
-def test_refresh():
-    spotify_api = SpotifyAPI()
-    new_releases = spotify_api.browse_new_releases()
-    return "done"

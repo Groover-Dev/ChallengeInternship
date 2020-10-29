@@ -47,7 +47,6 @@ class SpotifyAPI(object):
         try:
             token_model = Tokens()
             token_model.json_to_model(tokens)
-            print(token_model.access_token)
             db.session.add(token_model)
             db.session.commit()
         except:
@@ -64,8 +63,8 @@ class SpotifyAPI(object):
         # loop until reaching the limit - the total releases available
         while endpoint != None: 
             headers = self.get_resource_header()
-            print(endpoint)
-            print(headers)
+            # print(endpoint)
+            # print(headers)
             r = requests.get(endpoint, headers=headers)
             if r.status_code not in range(200, 299):
                 return {}
