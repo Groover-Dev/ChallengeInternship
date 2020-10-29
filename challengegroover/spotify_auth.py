@@ -6,8 +6,8 @@ class SpotifyAuth(object):
     SPOTIFY_URL_TOKEN = "https://accounts.spotify.com/api/token/"
     RESPONSE_TYPE = "code"
     HEADER = "application/x-www-form-urlencoded"
-    CLIENT_ID = os.environ.get("CLIENT_ID")
-    CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
+    CLIENT_ID = os.environ["CLIENT_ID"]
+    CLIENT_SECRET = os.environ["CLIENT_SECRET"]
     CALLBACK_URL = "http://localhost:5000/auth"
     SCOPE = "user-read-email user-read-private"
 
@@ -48,12 +48,10 @@ class SpotifyAuth(object):
 
     def refreshAuth(self, refresh_token):
         body = {"grant_type": "refresh_token", "refresh_token": refresh_token}
-
         post_refresh = requests.post(
             self.SPOTIFY_URL_TOKEN, data=body, headers=self.HEADER
         )
         p_back = json.dumps(post_refresh.text)
-
         return self.handleToken(p_back)
 
     def getUser(self):

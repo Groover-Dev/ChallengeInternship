@@ -1,9 +1,12 @@
 from flask import Flask, redirect, url_for
 import logging
 import logging.handlers
-
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import DateTime
+from datetime import datetime
 from .routes import *
 
+from .models import *
 
 def create_app():
     # config
@@ -14,6 +17,8 @@ def create_app():
         static_folder="ui/static",
     )
     app.config.from_pyfile("config.py")
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///spotify.db'
+    db.init_app(app)
 
     # logging
     handler = logging.handlers.RotatingFileHandler(
@@ -27,6 +32,8 @@ def create_app():
         )
     )
     app.logger.addHandler(handler)
+   
+    db.init_app(app)
 
     # routes
     with app.app_context():
@@ -35,5 +42,6 @@ def create_app():
         app.register_blueprint(root)
         app.register_blueprint(auth)
         app.register_blueprint(api)
+        db.create_all()  # Create sql tables for our data models
 
     return app
